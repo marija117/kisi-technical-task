@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const multer = require('multer');
 
 const app = express();
 app.use(express.json())
@@ -10,6 +11,18 @@ const port = 3000;
 // Define the paths to images and data directories
 const imagesDirectory = path.join(__dirname, 'static', 'images');
 const articlesPath = path.join(__dirname, 'static', 'data', 'articles.json')
+
+// Multer configuration for handling file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, imagesDirectory);
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 // Endpoint to retrieve the list of images with article associations
 app.get('/images', (req, res) => {
@@ -22,11 +35,16 @@ app.get('/images', (req, res) => {
   // Associate each image with an article
   const imageList = images.map((image, index) => ({
     image,
-    article: articles[index % articles.length], 
+    article: articles[index % articles.length],
   }));
 
   // Send the response
   res.json(imageList);
+});
+
+app.post('/upload', upload.single('image'), (req, res) => {
+  console.log('Image uploaded:', req.file.originalname);
+  res.sendStatus(200);
 });
 
 // Function to get the list of articles from the articles.json file
