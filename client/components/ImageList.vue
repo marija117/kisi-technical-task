@@ -10,6 +10,7 @@
           <br/>
           <p class="article-description">{{ item.article.description }}</p>
         </div>
+        <i class="arrow right"></i>
       </div>
     </div>
   </div>
@@ -123,6 +124,21 @@
     font-weight: lighter;
     font-size: 13px;
     padding: 10px;
+  }
+
+  .arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    top: 90%;
+    left: 95%;
+    position: absolute;
+  }
+
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
   }
 </style>
 
