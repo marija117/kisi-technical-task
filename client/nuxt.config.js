@@ -1,5 +1,11 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  serverMiddleware: [
+    { path: '/api', handler: '~/server.js' }
+  ],
+  http: {
+    baseURL: 'http://localhost:3000', // Adjust the URL based on your server configuration
+  },
   head: {
     title: 'client',
     htmlAttrs: {
