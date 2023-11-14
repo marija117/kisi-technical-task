@@ -13,6 +13,8 @@
         <i class="arrow right"></i>
       </div>
     </div>
+    <input type="file" ref="fileInput" style="display: none" @change="handleImageUpload" />
+    <button @click="triggerImageInput">Button</button>
   </div>
 </template>
 
@@ -140,6 +142,16 @@
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
   }
+  
+  button {
+    background-color: #4a52ff;
+    color: #fff;
+    border-radius: 20px;
+    width: 70px;
+    border: none;
+    padding: 5px;
+    margin: 20px;
+  }
 </style>
 
 
@@ -167,6 +179,14 @@ export default {
     },
     getImageUrl(imageName) {
       return `/images/${imageName}`;
+    },
+    triggerImageInput() {
+      this.$refs.fileInput.click();
+    },
+    async handleImageUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+      }
     }
   }
 };
