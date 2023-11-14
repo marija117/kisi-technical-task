@@ -5,6 +5,11 @@
       <div v-for="(item, index) in imageList" :key="index" class="image-card">
         <img :src="getImageUrl(item.image)" :alt="item.article.title" class="image"/>
         <h3 class="article-main">{{ item.article.title }}</h3>
+        <div class="overlay">
+          <h3 class="article-title">{{ item.article.title }}</h3>
+          <br/>
+          <p class="article-description">{{ item.article.description }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -74,6 +79,20 @@
     display: absolute;
   }
 
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #4a52ff;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
   .image-card:hover .overlay {
     opacity: 1;
   }
@@ -88,6 +107,22 @@
     top: 0;
     left: 0;
     position: absolute;
+  }
+
+  .article-title {
+    margin: 0;
+    text-align: left;
+    font-weight: lighter;
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .article-description {
+    margin: 0;
+    text-align: left;
+    font-weight: lighter;
+    font-size: 13px;
+    padding: 10px;
   }
 </style>
 
