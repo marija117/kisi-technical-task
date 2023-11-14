@@ -186,6 +186,18 @@ export default {
     async handleImageUpload(event) {
       const file = event.target.files[0];
       if (file) {
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try {
+          await this.$http.$post('/api/upload', formData);
+
+          // Fetch the updated list of images after upload
+          const response = await this.$http.$get('/api/images');
+          this.imageList = response;
+        } catch (error) {
+          console.error('Error uploading image:', error);
+        }
       }
     }
   }
