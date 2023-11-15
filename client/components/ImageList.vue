@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="frame">
     <h1>Connect people & spaces</h1>
     <div class="gallery">
       <div v-for="(item, index) in imageList" :key="index" class="image-card">
@@ -19,7 +19,7 @@
 </template>
 
 <style scoped>
-  .main {
+  .frame {
     display: grid;
     padding: 20px;
     max-width: 1200px;
@@ -163,7 +163,7 @@ export default {
       imageList: [],
     };
   },
-   async created() {
+   async mounted() {
     await this.fetchImages();
   },
 

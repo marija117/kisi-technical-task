@@ -1,7 +1,7 @@
 <template>
-  <body>
+  <div class="main">
     <ImageList />
-  </body>
+  </div>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
 };
 </script>
 <style scoped>
-  body 
+  .main 
   {
     font-family: Arial, sans-serif;
     margin: 0;
